@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://frd0bbcafytp"]
+
+[ext_resource type="Texture2D" uid="uid://katm7dbpvqta" path="res://snake.png" id="1_e204m"]
+[ext_resource type="Script" uid="uid://cowsawgd1ipf0" path="res://tail.gd" id="1_ul2st"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hukeq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_e204m")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pij62"]
+size = Vector2(64, 64)
+
+[node name="Tail" type="CharacterBody2D" unique_id=1826150687]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_ul2st")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=650934864]
+sprite_frames = SubResource("SpriteFrames_hukeq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2046250532]
+shape = SubResource("RectangleShape2D_pij62")

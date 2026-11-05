@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://sxaljpeinlxj"]
+
+[ext_resource type="Script" uid="uid://c5dhnpslqxyts" path="res://snake.gd" id="1_baghe"]
+[ext_resource type="PackedScene" uid="uid://1m1xm3vub622" path="res://player_controller.tscn" id="2_gxkgb"]
+[ext_resource type="PackedScene" uid="uid://blt8y0d47vq1o" path="res://view.tscn" id="3_2x2sd"]
+
+[node name="Snake" type="Node" unique_id=860479939]
+script = ExtResource("1_baghe")
+
+[node name="Controller" parent="." unique_id=1715953022 instance=ExtResource("2_gxkgb")]
+
+[node name="View" parent="." unique_id=2007776988 instance=ExtResource("3_2x2sd")]

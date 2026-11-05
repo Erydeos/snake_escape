@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://blt8y0d47vq1o"]
+
+[ext_resource type="Script" uid="uid://dkimkr4cxcn7x" path="res://view.gd" id="1_vo0hl"]
+[ext_resource type="Texture2D" uid="uid://katm7dbpvqta" path="res://snake.png" id="2_koon8"]
+[ext_resource type="Script" uid="uid://chhr4iyskc7c2" path="res://snake_skin.gd" id="3_2crm8"]
+[ext_resource type="Texture2D" uid="uid://l2xpfq1ll6he" path="res://snake_growth.png" id="4_2crm8"]
+
+[sub_resource type="Resource" id="Resource_lquwl"]
+script = ExtResource("3_2crm8")
+head_texture = ExtResource("2_koon8")
+tail_texture = ExtResource("4_2crm8")
+metadata/_custom_type_script = "uid://chhr4iyskc7c2"
+
+[node name="View" type="Node2D" unique_id=2007776988]
+script = ExtResource("1_vo0hl")
+skin = SubResource("Resource_lquwl")

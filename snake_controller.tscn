@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://7sbfckd6y6o6"]
+
+[ext_resource type="Script" uid="uid://bag568s5qdvn2" path="res://snake_controller.gd" id="1_uw7sw"]
+
+[node name="SnakeController" type="Node" unique_id=1973048860]
+script = ExtResource("1_uw7sw")
