@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b5hiqsf8gj23w"]
+
+[ext_resource type="Script" uid="uid://bry4cggr48d2j" path="res://map_logic.gd" id="1_l12o3"]
+[ext_resource type="PackedScene" uid="uid://kjmj0mqxa6nv" path="res://test_layer.tscn" id="2_rke7t"]
+
+[node name="Map" type="Node" unique_id=2063171677 node_paths=PackedStringArray("tilemap")]
+script = ExtResource("1_l12o3")
+tilemap = NodePath("TestLayer")
+
+[node name="TestLayer" parent="." unique_id=182689910 instance=ExtResource("2_rke7t")]

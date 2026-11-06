@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://xj76ow5ae3bm"]
 
 [ext_resource type="Script" uid="uid://cn65v2eequql4" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://b5hiqsf8gj23w" path="res://map_logic.tscn" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://sxaljpeinlxj" path="res://snake.tscn" id="2_h2yge"]
 
 [node name="Main" type="Node" unique_id=557495740]
 script = ExtResource("1_0xm2m")
+
+[node name="Map" parent="." unique_id=2063171677 instance=ExtResource("2_1bvp3")]
 
 [node name="Timer" type="Timer" parent="." unique_id=1078441979]
 wait_time = 0.2
@@ -12,4 +15,4 @@ autostart = true
 
 [node name="Snake" parent="." unique_id=860479939 instance=ExtResource("2_h2yge")]
 start_length = 5
-grid_size = Vector2i(30, 30)
+cell_size = 16
