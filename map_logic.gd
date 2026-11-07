@@ -40,3 +40,10 @@ func get_map_dimensions() -> Vector2i:
 	
 func get_cells_type(atlas_coords: Vector2i) -> Array[Vector2i]:
 	return tilemap.get_used_cells_by_id(0, atlas_coords, 0)
+	
+func update_occupied(cell: Vector2i) -> void:
+	var cell_data = get_cell_data(cell)
+	if cell_data[2] == Vector2i(0,0):
+		set_cell([cell_data[0], cell_data[1],Vector2i(2, 1), cell_data[3]])
+	else:
+		set_cell([cell_data[0], cell_data[1],Vector2i(0, 0), cell_data[3]])

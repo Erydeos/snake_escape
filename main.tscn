@@ -2,12 +2,15 @@
 
 [ext_resource type="Script" uid="uid://cn65v2eequql4" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://b5hiqsf8gj23w" path="res://map_logic.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://8ap3le374blo" path="res://hud.tscn" id="2_7mycd"]
 [ext_resource type="PackedScene" uid="uid://sxaljpeinlxj" path="res://snake.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://kjmj0mqxa6nv" path="res://test_layer.tscn" id="3_1bvp3"]
 [ext_resource type="Script" uid="uid://b8h6ucrela057" path="res://timer.gd" id="4_lquwl"]
 
 [node name="Main" type="Node" unique_id=557495740]
 script = ExtResource("1_0xm2m")
+
+[node name="HUD" parent="." unique_id=1770327430 instance=ExtResource("2_7mycd")]
 
 [node name="Map" parent="." unique_id=2063171677 node_paths=PackedStringArray("tilemap") instance=ExtResource("2_1bvp3")]
 tilemap = NodePath("TestLayer")
@@ -19,5 +22,10 @@ wait_time = 0.2
 script = ExtResource("4_lquwl")
 
 [node name="Snake" parent="." unique_id=860479939 instance=ExtResource("2_h2yge")]
-start_length = 5
 cell_size = 16
+
+[node name="FoodTimer" type="Timer" parent="." unique_id=1220291216]
+wait_time = 3.0
+
+[connection signal="start_signal" from="HUD" to="." method="_on_hud_start_signal"]
+[connection signal="timeout" from="FoodTimer" to="." method="_on_food_timer_timeout"]

@@ -16,7 +16,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if dir == Vector2i.ZERO or _queue.size() >= max_buffer:
 		return
 	
-	var reference = _queue.back() if not _queue.is_empty() else Vector2i(-1,-1)
+	var reference = _queue.back() if not _queue.is_empty() else Vector2i(-1, -1)
 	if dir == reference or dir == -reference:
 		return
 	_queue.push_back(dir)

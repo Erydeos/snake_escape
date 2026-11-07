@@ -4,6 +4,7 @@ extends RefCounted
 signal head_added(cell: Vector2i)
 signal tail_removed(cell: Vector2i)
 signal grew(amount: int)
+signal old_head(segment: Vector2i)
 
 var segments: Array[Vector2i] = []
 var direction: Vector2i  
@@ -12,6 +13,7 @@ var _pending_growth: int
 
 func step() -> void:
 	var new_head: Vector2i = segments[0] + direction
+	old_head.emit(segments[0])
 	segments.push_front(new_head)
 	head_added.emit(new_head)
 	if _pending_growth > 0:

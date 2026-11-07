@@ -55,3 +55,7 @@ func play_death() -> void:
 func _appy_texture(sprite: Sprite2D, tex: Texture2D) -> void:
 	sprite.texture = tex
 	sprite.scale = Vector2(cell_size - inset*2, cell_size - inset*2) / tex.get_size()
+	
+func clear_sprites() -> void:
+	_pool.append_array(_sprites)
+	_sprites = []
