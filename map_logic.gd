@@ -24,8 +24,8 @@ func get_cell_data(cell_position: Vector2i):
 	var alt = tilemap.get_cell_alternative_tile(cell_position)
 	return [cell_position, id, atlas_coords, alt]
 
-func set_cell(position: Vector2i, id: int, atlas_coords: Vector2i, alt: int):
-	tilemap.set_cell(Vector2i(5,5), 0, Vector2i(2, 0), 0)
+func set_cell(cell_data: Array):
+	tilemap.set_cell(cell_data[0], cell_data[1], cell_data[2], cell_data[3])
 
 func get_tile_map_data():
 	var used = tilemap.get_used_cells()
@@ -38,3 +38,5 @@ func get_map_dimensions() -> Vector2i:
 	var rect: Vector2i  = tilemap.get_used_rect().size
 	return rect
 	
+func get_cells_type(atlas_coords: Vector2i) -> Array[Vector2i]:
+	return tilemap.get_used_cells_by_id(0, atlas_coords, 0)

@@ -6,12 +6,9 @@ signal tail_removed(cell: Vector2i)
 signal grew(amount: int)
 
 var segments: Array[Vector2i] = []
-var direction: Vector2i = Vector2i.RIGHT
-var _pending_growth: int = 0
+var direction: Vector2i  
+var _pending_growth: int 
 
-func _init(start_position: Vector2i, start_length: int) -> void:
-	for i in start_length:
-		segments.append(start_position - Vector2i(i, 0))
 
 func step() -> void:
 	var new_head: Vector2i = segments[0] + direction
@@ -28,3 +25,14 @@ func grow(amount: int):
 
 func is_in_cell(cell: Vector2i):
 	return cell in segments
+
+func clear() -> void:
+	segments = []
+
+func respawn(start_p: Vector2i, start_l: int) -> void:
+	for i in start_l:
+		segments.append(start_p - Vector2i(i, 0))
+	direction = Vector2i.RIGHT
+	_pending_growth = 0 
+
+	

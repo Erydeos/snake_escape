@@ -8,7 +8,7 @@ var body: Snake_body_logic
 @export var start_cell: Vector2i
 @export var start_length: int = 3
 @export var cell_size: int = 32
-@export var input_queue: int = 5
+@export var input_queue: int = 2
 @export var grid_size: Vector2i = Vector2i(20, 20)
 
 
@@ -20,8 +20,26 @@ func _ready() -> void:
 func tick() -> void:
 	body.direction = controller.next_direction(body.direction)
 	body.step()
+	
 
 func spawn_body():
-	start_cell = grid_size / 2
-	body = Snake_body_logic.new(start_cell, start_length)
+	body.respawn(start_cell, start_length)
 	view.bind(body)
+	
+
+func get_body() -> Array[Vector2i]:
+	return body.segments
+
+func death() ->void:
+	body.clear()
+	
+
+func init() ->void:
+	start_cell = grid_size / 2
+	body = Snake_body_logic.new()
+
+func destroy() -> void:
+	view.play_death()
+
+func get_sprites() -> Array:
+	return view._sprites

@@ -14,6 +14,7 @@ func bind(body: Snake_body_logic) -> void:
 	body.head_added.connect(_push_head)
 	body.tail_removed.connect(_pop_tail)
 
+
 func _push_head(cell: Vector2i) -> void:
 	if not _sprites.is_empty():
 		_appy_texture(_sprites[0], skin.tail_texture)
@@ -49,6 +50,7 @@ func play_death() -> void:
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color.RED, 0.1)
 	tween.tween_property(self, "modulate", Color.WHITE, 0.1)
+	_release(_sprites.pop_back())
 
 func _appy_texture(sprite: Sprite2D, tex: Texture2D) -> void:
 	sprite.texture = tex
