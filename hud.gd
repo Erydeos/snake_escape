@@ -22,6 +22,7 @@ func _on_start_button_pressed() -> void:
 
 func toggle_visibility() -> void:
 	$StartButton.visible = not $StartButton.visible
+	$Message.visible = not $Message.visible
 	if $ScoreTimer.is_stopped():
 		$ScoreTimer.start()
 	else:
@@ -39,4 +40,10 @@ func scale_hud(window: Vector2i):
 	$StartButton.add_theme_font_size_override("font_size", int(32 * scale_mod))
 	$StartButton.reset_size()
 	$StartButton.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	
 	$ScoreLabel.add_theme_font_size_override("font_size", int(24 * scale_mod))
+	$Message.add_theme_font_size_override("font_size", int(32 * scale_mod))
+	$Message.position.y = $Message.position.y - $Message.get_theme_font_size("font_size") * 3
+	
+func print_message(msg: String) -> void:
+	$Message.text = msg

@@ -29,6 +29,7 @@ func _ready() -> void:
 
 	hud.update_score.connect(update_score)
 	hud.scale_hud(size)
+	hud.print_message("Grow and Escape")
 
 
 func add_food(num: int) -> void:
@@ -70,7 +71,7 @@ func check_snake() -> void:
 		reset_tile(cell)
 
 func game_over():
-	print("Game Over")
+	hud.print_message("Game Over")
 	snake.death()
 	ticker.stop()
 	$FoodTimer.stop()
@@ -97,7 +98,7 @@ func win():
 	ticker.stop()
 	$FoodTimer.stop()
 	hud.toggle_visibility() 
-	print("Escaped")
+	hud.print_message("Escaped!\n Score: " + str(score))
 	
 func reset() -> void:
 	var cells: Array = $Map.get_cells_type(Vector2i(1, 0))
