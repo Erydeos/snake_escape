@@ -55,3 +55,6 @@ func get_sprites() -> Array:
 func snake_move(segment: Vector2i):
 	var segment_ar = [segment]
 	snake_update.emit(segment_ar)
+	
+func clear() -> void:
+	view.clear_sprites()

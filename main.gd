@@ -10,6 +10,7 @@ extends Node
 var size: Vector2i
 var alive: bool = false
 var score: float = 0
+var paused: bool = false
 
 func _ready() -> void:
 	var cell_size = $Map.cell_size
@@ -78,6 +79,7 @@ func game_over():
 	hud.toggle_visibility() 
 	
 func start() -> void:
+	snake.clear()
 	snake.death()
 	reset()
 	score = 0
@@ -85,14 +87,18 @@ func start() -> void:
 	update_snake_collision(snake_segements.slice(1, snake_segements.size()))
 	alive = true
 	add_food(3)
-	ticker.autostart = true
 	ticker.start()
+	ticker.autostart = true
 	$FoodTimer.start()
 	$FoodTimer.autostart = true
+	paused = false
 
 func _on_hud_start_signal() -> void:
 	start()
-	hud.toggle_visibility()
+	if paused:
+		hud.pause()
+	else:
+		hud.toggle_visibility()
 
 func win():
 	snake.death()
@@ -133,12 +139,20 @@ func _on_food_timer_timeout() -> void:
 	add_food(1)
 	
 func _unhandled_input(event: InputEvent) -> void:
-	var paused: bool
-	if event.is_action_pressed("pause") and not ticker.is_stopped(): 
-		paused = hud.pause()
-		if paused:
-			ticker.stop()
-			$FoodTimer.stop()
-		else:
-			ticker.start()
-			$FoodTimer.start()
+	if event.is_action_pressed("pause"): 
+		toggle_pause.call_deferred()
+		
+func toggle_pause() -> void:
+	if not paused:
+		if ticker.is_stopped():
+			return
+		ticker.stop()
+		$FoodTimer.stop()
+		hud.pause(paused)
+		paused = true
+
+	else:
+		ticker.start()
+		$FoodTimer.start()
+		hud.pause(paused)
+		paused = false
