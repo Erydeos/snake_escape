@@ -26,6 +26,7 @@ func tick() -> void:
 	
 
 func spawn_body() -> Array[Vector2i]:
+	$Controller.clear()
 	view.clear_sprites()
 	body.respawn(start_cell, start_length)
 	view.bind(body)

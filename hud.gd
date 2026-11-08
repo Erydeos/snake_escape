@@ -4,6 +4,7 @@ signal start_signal
 signal update_score(time: float, time_step: float)
 
 var time: float = 0
+var paused: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -47,3 +48,13 @@ func scale_hud(window: Vector2i):
 	
 func print_message(msg: String) -> void:
 	$Message.text = msg
+
+func pause() -> bool:
+	if paused:
+		toggle_visibility()
+		paused = not paused
+	else:
+		print_message("Paused")
+		paused = not paused
+		toggle_visibility()
+	return paused

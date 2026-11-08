@@ -29,4 +29,6 @@ func next_direction(current: Vector2i) -> Vector2i:
 	else:
 		return _queue.pop_front()
 		
-		
+func clear() -> void:
+	_queue = []
+	_current = Vector2i.RIGHT

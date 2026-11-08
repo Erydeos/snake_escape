@@ -78,9 +78,10 @@ func game_over():
 	hud.toggle_visibility() 
 	
 func start() -> void:
+	snake.death()
 	reset()
 	score = 0
-	var snake_segements: Array[Vector2i] = $Snake.spawn_body()
+	var snake_segements: Array[Vector2i] = snake.spawn_body()
 	update_snake_collision(snake_segements.slice(1, snake_segements.size()))
 	alive = true
 	add_food(3)
@@ -130,3 +131,14 @@ func calculate_score(time_step: float) -> Array:
 
 func _on_food_timer_timeout() -> void:
 	add_food(1)
+	
+func _unhandled_input(event: InputEvent) -> void:
+	var paused: bool
+	if event.is_action_pressed("pause") and not ticker.is_stopped(): 
+		paused = hud.pause()
+		if paused:
+			ticker.stop()
+			$FoodTimer.stop()
+		else:
+			ticker.start()
+			$FoodTimer.start()
